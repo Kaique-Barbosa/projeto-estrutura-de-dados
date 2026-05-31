@@ -9,6 +9,36 @@ typedef struct Livro {
 
 Livro *inicio = NULL;
 
+// ------------ inicio das fumções --------------------------
+
+//cadastrar livro
+void cadastrarLivro(char nome[]) {
+    Livro *novo = malloc(sizeof(Livro));
+
+    strcpy(novo->nome, nome);
+    novo->prox = NULL;
+
+    if (inicio == NULL) {
+        inicio = novo;
+    } else {
+        Livro *atual = inicio;
+
+        while (atual->prox != NULL) {
+            atual = atual->prox;
+        }
+
+        atual->prox = novo;
+    }
+
+    printf("Livro cadastrado com sucesso!\n");
+}
+
+
+// ------------ Fim das fumções --------------------------
+
+
+
+
 int main() {
     int opcao;
     char nome[100];
