@@ -33,6 +33,22 @@ void cadastrarLivro(char nome[]) {
     printf("Livro cadastrado com sucesso!\n");
 }
 
+// Listar livros
+void listarLivros() {
+    Livro *atual = inicio;
+
+    if (atual == NULL) {
+        printf("Nenhum livro encontrado no cadastro.\n");
+        return;
+    }
+
+    printf("\n-=-=-=-=-= LIVROS CADASTRADOS =-=-=-=-=-\n");
+
+    while (atual != NULL) {
+        printf("- %s\n", atual->nome);
+        atual = atual->prox;
+    }
+}
 
 // ------------ Fim das fumções --------------------------
 
@@ -52,6 +68,7 @@ int main() {
         printf("0 - Sair\n");
         printf("Opcao: ");
         scanf("%d", &opcao);
+         system("cls");
 
         getchar(); // limpa o \n do buffer
 
@@ -70,7 +87,7 @@ int main() {
                 fgets(nome, 100, stdin);
                 nome[strcspn(nome, "\n")] = '\0';
 
-                buscarLivro(nome);
+               // buscarLivro(nome);
                 break;
 
             case 3:
@@ -82,7 +99,7 @@ int main() {
                 fgets(nome, 100, stdin);
                 nome[strcspn(nome, "\n")] = '\0';
 
-                removerLivro(nome);
+               // removerLivro(nome);
                 break;
 
             case 0:
