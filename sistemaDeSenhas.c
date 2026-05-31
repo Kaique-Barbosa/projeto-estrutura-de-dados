@@ -64,6 +64,35 @@ void chamarProxSenha(){
 
 
 
+// Função para Exibir FIla
+
+void exibirFila(){
+    No * atual = inicio;
+
+    if(atual == NULL){
+        printf("A fila  Está Vazia!\n");
+    }
+
+    printf("Fila: ");
+    while (atual != NULL){
+        printf("Senha: %d\t", atual -> senha);
+        atual = atual -> prox;
+    }
+    
+}
+
+
+// função para pesquisar senha
+
+void pesquisarSenha(int senha){
+    No *atual = inicio;
+
+    while (atual != NULL ){
+        
+        
+        printf("");
+    }
+}
 
 // ------------ Fim das fumções --------------------------
 
@@ -106,7 +135,7 @@ int main() {
         break;
     
     case 4 :
-        
+        exibirFila();
         break;
     
     case 0 :
