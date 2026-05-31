@@ -2,8 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct Livro {
+    char nome[100];
+    struct Livro *prox;
+} Livro;
 
-
+Livro *inicio = NULL;
 
 int main() {
     int opcao;
