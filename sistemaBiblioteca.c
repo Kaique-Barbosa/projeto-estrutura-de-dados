@@ -50,6 +50,22 @@ void listarLivros() {
     }
 }
 
+// Buscar livro
+void buscarLivro(char nome[]) {
+    Livro *atual = inicio;
+
+    while (atual != NULL) {
+        if (strcmp(atual->nome, nome) == 0) {
+            printf("Livro encontrado: %s\n", atual->nome);
+            return;
+        }
+
+        atual = atual->prox;
+    }
+
+    printf("Livro nao encontrado.\n");
+}
+
 // ------------ Fim das fumções --------------------------
 
 
