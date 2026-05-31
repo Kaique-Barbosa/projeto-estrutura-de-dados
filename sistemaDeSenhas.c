@@ -20,6 +20,50 @@ No *fim = NULL;
 
 // ------------ inicio das fumções --------------------------
 
+// Função para gerar as senhas:
+void gerarSenha(int senha){
+    // definição do ponteiro Novo do tipo No
+    No *novo = malloc(sizeof(No));
+
+    novo -> senha = senha;
+    novo -> prox = NULL;
+
+    if(fim == NULL){
+        // fim = novo; 
+        // inicio = fim;
+        // Declarando como atribuição encadeada mas siginifica o mesmo acima ↑↑
+        inicio = fim = novo;
+    } else{
+        fim -> prox = novo;
+        fim = novo;
+    }
+
+    printf("A senha %d foi adicionada na fila \n", senha);
+    printf("\n \n");
+}
+
+//  função para chamar a prox senha
+
+void chamarProxSenha(){
+    if(inicio==NULL){
+        printf("A fila está vazia\n ");
+    }
+ 
+    No *senhaChamada = inicio;
+
+    printf("Chamando a senha: %d\n", senhaChamada -> senha);
+
+    inicio = inicio -> prox;
+
+    if(inicio == NULL){
+        fim =NULL;
+    }
+
+    free(senhaChamada);
+}
+
+
+
 
 // ------------ Fim das fumções --------------------------
 
@@ -32,26 +76,29 @@ int main() {
     int opcaoSelecionada, senha, cont =1;
 
     do {
-        printf("-=-=-=-=-= SIS SENHAS =-=-=-=-=-");
+        
+        printf("-=-=-=-=-= SYS SENHAS =-=-=-=-=- \n");
         printf("1 - gerar Senhas \t");
         printf("2 - Chamar proxima senha \t");
         printf("3 - Pesquisar senha \t");
         printf("4 - Exibir fila de senhas \n");
         printf("0 - Sair do programa \n");
         printf("Opcao: ");
-        scanf("%d ", &opcaoSelecionada);
+        scanf("%d", &opcaoSelecionada);
+        system("cls");
 
     // SWITCH PARA GERENCIAR AS ENTRADAS ↓↓↓↓4↓↓↓↓↓↓↓↓↓↓ --------------------------------------
 
     switch (opcaoSelecionada)
     {
     case 1 :
-        
-    
+        gerarSenha(cont);
+        cont++;
+        // incrementar sistema de geração aleatorio posteriormente 
         break;
     
     case 2 :
-        
+        chamarProxSenha();
         break;
     
     case 3 :
