@@ -75,7 +75,7 @@ void exibirFila(){
         printf("A fila  Está Vazia!\n");
     }
 
-    printf("Fila: ");
+    printf("Fila: \n");
     while (atual != NULL){
         printf("Senha: %d\t", atual -> senha);
         atual = atual -> prox;
@@ -143,9 +143,9 @@ int main() {
     do {
         
         printf("\n\n\n-=-=-=-=-= SYS SENHAS =-=-=-=-=- \n");
-        printf("1 - gerar Senhas \t");
-        printf("2 - Chamar proxima senha \t");
-        printf("3 - Pesquisar senha \t");
+        printf("1 - gerar Senhas \n");
+        printf("2 - Chamar proxima senha \n");
+        printf("3 - Pesquisar senha \n");
         printf("4 - Exibir fila de senhas \n");
         printf("5 - gerar senha de 10 em 10 \n");
         printf("0 - Sair do programa \n");
