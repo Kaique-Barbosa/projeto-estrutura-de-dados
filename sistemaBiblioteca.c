@@ -4,6 +4,8 @@
 
 typedef struct Livro {
     char nome[100];
+    char autor[100];
+    int anoLancamento;
     struct Livro *prox;
 } Livro;
 
@@ -12,22 +14,26 @@ Livro *inicio = NULL;
 // ------------ inicio das fumções --------------------------
 
 //cadastrar livro
-void cadastrarLivro(char nome[]) {
+void cadastrarLivro(char nome[], char autor[], int anoLancamento) {
     Livro *novo = malloc(sizeof(Livro));
 
-    strcpy(novo->nome, nome);
-    novo->prox = NULL;
+    strcpy(novo ->  nome,  nome);
+    strcpy(novo ->  autor,  autor);
+    novo -> anoLancamento = anoLancamento;
+    novo ->  prox = NULL;
+
+
 
     if (inicio == NULL) {
         inicio = novo;
     } else {
         Livro *atual = inicio;
 
-        while (atual->prox != NULL) {
-            atual = atual->prox;
+        while (atual ->  prox != NULL) {
+            atual = atual ->  prox;
         }
 
-        atual->prox = novo;
+        atual ->  prox = novo;
     }
 
     printf("Livro cadastrado com sucesso!\n");
@@ -45,8 +51,12 @@ void listarLivros() {
     printf("\n-=-=-=-=-= LIVROS CADASTRADOS =-=-=-=-=-\n");
 
     while (atual != NULL) {
-        printf("- %s\n", atual->nome);
-        atual = atual->prox;
+        printf("\n-Nome: %s\n", atual -> nome);
+        printf("--Autor: %s\n", atual -> autor);
+        printf("--Ano de lancamento: %d\n", atual -> anoLancamento);
+         printf("-------------------------- \n");
+
+        atual = atual -> prox;
     }
 }
 
@@ -55,11 +65,43 @@ void buscarLivro(char nome[]) {
     Livro *atual = inicio;
 
     while (atual != NULL) {
-        if (strcmp(atual->nome, nome) == 0) {
-            printf("Livro encontrado: %s\n", atual->nome);
+        if (strcmp(atual ->  nome, nome) == 0) {
+            printf("\nLivro encontrado!\n");
+            printf("Nome: %s\n", atual -> nome);
+            printf("Autor: %s\n", atual -> autor);
+            printf("Ano de lancamento: %d\n", atual -> anoLancamento);
             return;
         }
 
+        atual = atual -> prox;
+    }
+
+    printf("Livro nao encontrado.\n");
+}
+
+
+
+// Remover livro
+void removerLivro(char nome[]) {
+    Livro *atual = inicio;
+    Livro *anterior = NULL;
+
+    while (atual != NULL) {
+
+        if (strcmp(atual->nome, nome) == 0) {
+
+            if (anterior == NULL) { // verifica se é o primero nó
+                inicio = atual->prox;
+            } else {
+                anterior->prox = atual->prox;
+            }
+
+            free(atual);
+            printf("Livro removido.\n");
+            return;
+        }
+
+        anterior = atual;
         atual = atual->prox;
     }
 
@@ -73,7 +115,10 @@ void buscarLivro(char nome[]) {
 
 int main() {
     int opcao;
+    
     char nome[100];
+    char autor[100];
+    int anoLancamento;
 
     do {
         printf("\n\n-=-=-=-=-=BIBLIOTECA =-=-=-=-=-\n");
@@ -93,9 +138,17 @@ int main() {
             case 1:
                 printf("Nome do livro: ");
                 fgets(nome, 100, stdin);
-                nome[strcspn(nome, "\n")] = '\0'; //  qual posição aparece o primeiro \n.
+                nome[strcspn(nome, "\n")] = '\0'; //  qual posição aparece o primeiro "\n.""
 
-                cadastrarLivro(nome);
+                printf("Autor: ");
+                fgets(autor, 100, stdin);
+                autor[strcspn(autor, "\n")] = '\0';
+
+                printf("Ano de lancamento: ");
+                scanf("%d", &anoLancamento);
+                getchar();
+
+                cadastrarLivro(nome, autor, anoLancamento);
                 break;
 
             case 2:
@@ -103,7 +156,7 @@ int main() {
                 fgets(nome, 100, stdin);
                 nome[strcspn(nome, "\n")] = '\0';
 
-               // buscarLivro(nome);
+                buscarLivro(nome);
                 break;
 
             case 3:
@@ -115,7 +168,7 @@ int main() {
                 fgets(nome, 100, stdin);
                 nome[strcspn(nome, "\n")] = '\0';
 
-               // removerLivro(nome);
+               removerLivro(nome);
                 break;
 
             case 0:
