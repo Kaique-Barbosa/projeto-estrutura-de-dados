@@ -6,6 +6,24 @@
 // problematica:  Sistema de atendimento de senhas
 
 
+// CRiando a STRUCT
+
+typedef struct No {
+    int senha;
+    struct No *prox;
+} No;
+
+// criando ponteiros do tipo No para delimitar o inicio e fim 
+
+No *inicio = NULL;
+No *fim = NULL;
+
+// ------------ inicio das fumções --------------------------
+
+
+// ------------ Fim das fumções --------------------------
+
+
 
 
 
